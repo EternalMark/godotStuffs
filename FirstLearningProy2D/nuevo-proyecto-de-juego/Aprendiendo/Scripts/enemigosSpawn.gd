@@ -13,5 +13,6 @@ func _on_timer_spawner_timeout() -> void:
 		var enemyI = enemy.instantiate()
 		var numEnemies= randi_range(0,enemies)
 		print("Spawneando ",numEnemies," enemigos")
-		for i in range(1,numEnemies):
-			spawn1.add_child(enemyI)
+		#for i in range(1,numEnemies):
+			#spawn1.add_child(enemyI)
+		
