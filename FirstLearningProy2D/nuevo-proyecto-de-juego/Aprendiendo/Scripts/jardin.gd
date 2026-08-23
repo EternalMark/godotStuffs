@@ -2,14 +2,16 @@ extends TileMapLayer
 
 # Define el ID de la fuente de tiles (usualmente 0 si solo tienes un TileSet cargado)
 @export var source_id: int = 0
-
+@onready var bee = preload("res://Aprendiendo/escenas/jugador.tscn")
+@onready var abejas =$"../../Jugador"
 # Coordenadas (atlas_coords) del nuevo tile que quieres colocar al hacer clic
 @export var target_atlas_coords: Vector2i = Vector2i(1, 0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Detecta el clic izquierdo del ratón
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print("Diste Clic")
+		var beeI = bee.instantiate()
+		abejas.add_child(beeI)
 		# Obtiene la posición global del ratón
 		var global_mouse_pos = get_global_mouse_position()
 		
@@ -19,7 +21,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Verifica si la casilla actual existe dentro del TileMapLayer
 		#if get_cell_source_id(tile_pos) != -1:
 			# Cambia el tile por el nuevo atlas coord
-		set_cell(tile_pos, source_id, target_atlas_coords)
+		#set_cell(tile_pos, source_id, target_atlas_coords)
 		print("Cambia tile")
 		#else: 
 			#print("No cambia tile")
