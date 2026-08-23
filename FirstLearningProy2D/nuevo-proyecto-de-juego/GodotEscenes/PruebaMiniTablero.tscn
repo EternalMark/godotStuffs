@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://by4afii8ofxp1"]
+
+[ext_resource type="Script" uid="uid://coovq8oef58nn" path="res://GodotEscenes/BattleBoard.gd" id="1_4a5fn"]
+[ext_resource type="Texture2D" uid="uid://k6qwq3akje64" path="res://Assets/kenney_toon-characters-1/Male person/PNG/Parts/head.png" id="2_vycbr"]
+[ext_resource type="PackedScene" uid="uid://wa6lg3x0uway" path="res://GodotEscenes/battleboxes.tscn" id="4_ntd2o"]
+
+[node name="Node2D" type="Node2D" unique_id=1615593327]
+script = ExtResource("1_4a5fn")
+
+[node name="Control" type="Control" parent="." unique_id=1478967090]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1668641098]
+clip_contents = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 536.0
+offset_bottom = 552.0
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=1824833130]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Node2D" parent="Control/SubViewportContainer/SubViewport" unique_id=27111375 instance=ExtResource("4_ntd2o")]
+position = Vector2(8, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=950293927]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_vycbr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=450750657]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1936669356]
+offset_right = 40.0
+offset_bottom = 23.0

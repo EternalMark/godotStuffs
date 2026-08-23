@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpnpispjjxjy5"]
+
+[ext_resource type="PackedScene" uid="uid://c5cfwvxgudfdq" path="res://GodotEscenes/Carril.tscn" id="1_j266a"]
+[ext_resource type="PackedScene" uid="uid://sluobunlsbqs" path="res://GodotEscenes/FirstCharacter.tscn" id="2_6pl6o"]
+[ext_resource type="PackedScene" uid="uid://u0tfl24tmeq1" path="res://GodotEscenes/ZombieCharacter.tscn" id="3_78d3y"]
+[ext_resource type="PackedScene" uid="uid://c1n4sr6ydl71k" path="res://GodotEscenes/bullet.tscn" id="4_2p107"]
+[ext_resource type="Script" uid="uid://5cpcd4im1j66" path="res://GodotEscenes/game_controller.gd" id="5_64y4t"]
+[ext_resource type="PackedScene" uid="uid://bu2jm44swjj60" path="res://GodotEscenes/Spawner.tscn" id="6_o0eco"]
+
+[node name="Nivel1" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 55.0
+offset_top = 32.0
+offset_right = 95.0
+offset_bottom = 55.0
+text = "HOLA COMO ESTAS"
+
+[node name="Carril3" parent="." instance=ExtResource("1_j266a")]
+position = Vector2(690, 516)
+scale = Vector2(1.2, 1)
+
+[node name="Carril2" parent="." instance=ExtResource("1_j266a")]
+position = Vector2(690, 345)
+scale = Vector2(1.2, 1)
+
+[node name="Carril1" parent="." instance=ExtResource("1_j266a")]
+position = Vector2(691, 173)
+scale = Vector2(1.2, 1)
+
+[node name="Char1" parent="." instance=ExtResource("2_6pl6o")]
+position = Vector2(213, 177)
+
+[node name="Char2" parent="." instance=ExtResource("2_6pl6o")]
+position = Vector2(213, 346)
+
+[node name="Char3" parent="." instance=ExtResource("2_6pl6o")]
+position = Vector2(213, 521)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_78d3y")]
+position = Vector2(1186, 177)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("3_78d3y")]
+position = Vector2(1188, 345)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("3_78d3y")]
+position = Vector2(1187, 514)
+
+[node name="Bullet" parent="." instance=ExtResource("4_2p107")]
+position = Vector2(269, 191)
+
+[node name="GameController" type="Node2D" parent="."]
+script = ExtResource("5_64y4t")
+
+[node name="Timer" type="Timer" parent="GameController"]
+autostart = true
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="SpawnerEscene" parent="Spawners" instance=ExtResource("6_o0eco")]
+position = Vector2(1184, 181)
+
+[node name="SpawnerEscene2" parent="Spawners" instance=ExtResource("6_o0eco")]
+position = Vector2(1185, 345)
+
+[node name="SpawnerEscene3" parent="Spawners" instance=ExtResource("6_o0eco")]
+position = Vector2(1186, 514)
+
+[connection signal="timeout" from="GameController/Timer" to="GameController" method="_on_timer_timeout"]

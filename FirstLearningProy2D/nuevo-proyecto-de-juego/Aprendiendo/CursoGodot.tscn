@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://s10mbgcc3lfs"]
+
+[ext_resource type="Script" uid="uid://cnnwjf6vce3xf" path="res://Aprendiendo/curso_godot.gd" id="1_3onww"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2jc3q"]
+font_size = 5
+
+[node name="CursoGodot" type="Control" unique_id=1565653066]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3onww")
+
+[node name="Label" type="Label" parent="." unique_id=348767750]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 24.0
+offset_right = 352.0
+offset_bottom = 96.0
+text = "Hola mundo"
+label_settings = SubResource("LabelSettings_2jc3q")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1n4sr6ydl71k"]
+
+[ext_resource type="Script" uid="uid://hssygtm81l58" path="res://GodotEscenes/bullet.gd" id="1_iwxed"]
+[ext_resource type="Texture2D" uid="uid://b3vo6t3c8hmbn" path="res://Assets/kenney_toon-characters-1/Robot/PNG/Parts/headShock.png" id="2_iwxed"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwxed"]
+
+[node name="Bullet" type="Area2D"]
+light_mask = 2
+visibility_layer = 4
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_iwxed")
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_iwxed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iwxed")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bbnul4uinljvf"]
+
+[ext_resource type="Script" uid="uid://bi0082ues6pks" path="res://Aprendiendo/Scripts/enemy.gd" id="1_c8ku1"]
+[ext_resource type="Texture2D" uid="uid://b3vo6t3c8hmbn" path="res://Assets/kenney_toon-characters-1/Robot/PNG/Parts/headShock.png" id="2_kjxmk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jc3q"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wgj6k"]
+radius = 24.0
+
+[node name="Enemigo" type="CharacterBody2D" unique_id=1169438116 groups=["Enemigos"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_c8ku1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=533397649]
+shape = SubResource("RectangleShape2D_2jc3q")
+
+[node name="HeadShock" type="Sprite2D" parent="." unique_id=1912495589]
+texture = ExtResource("2_kjxmk")
+
+[node name="areaAtaque" type="Area2D" parent="." unique_id=541207589]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaAtaque" unique_id=267479693]
+shape = SubResource("CircleShape2D_wgj6k")
+
+[node name="Timer" type="Timer" parent="." unique_id=988226311]
+wait_time = 1.5
+
+[node name="TimerMovimiento" type="Timer" parent="." unique_id=1608039407]
+
+[connection signal="body_entered" from="areaAtaque" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="areaAtaque" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerMovimiento" to="." method="_on_movimiento_timeout"]

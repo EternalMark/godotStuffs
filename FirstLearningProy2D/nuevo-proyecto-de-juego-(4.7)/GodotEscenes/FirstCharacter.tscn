@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://sluobunlsbqs"]
+
+[ext_resource type="Texture2D" uid="uid://biuybd771ki6n" path="res://Assets/kenney_toon-characters-1/Male adventurer/PNG/Poses/character_maleAdventurer_attack0.png" id="1_5gdue"]
+[ext_resource type="Script" uid="uid://dbntd8h4ajpq7" path="res://GodotEscenes/personaje.gd" id="1_v3s4t"]
+[ext_resource type="Texture2D" uid="uid://dtuen2pi0k287" path="res://Assets/kenney_toon-characters-1/Male adventurer/PNG/Parts/hand.png" id="3_p3mo6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5bbr"]
+size = Vector2(57, 93)
+
+[node name="Node2D" type="Node2D"]
+visibility_layer = 6
+
+[node name="Personaje" type="StaticBody2D" parent="."]
+collision_mask = 6
+script = ExtResource("1_v3s4t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Personaje"]
+position = Vector2(1, 1)
+texture = ExtResource("1_5gdue")
+
+[node name="Hand" type="Sprite2D" parent="Personaje"]
+position = Vector2(35, 26)
+texture = ExtResource("3_p3mo6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Personaje"]
+physics_interpolation_mode = 2
+visibility_layer = 4
+position = Vector2(-0.5, 18.5)
+shape = SubResource("RectangleShape2D_b5bbr")
+
+[node name="Timer" type="Timer" parent="Personaje"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Personaje/Timer" to="Personaje" method="_on_timer_timeout"]

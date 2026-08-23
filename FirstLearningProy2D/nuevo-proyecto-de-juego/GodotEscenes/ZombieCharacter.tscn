@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://u0tfl24tmeq1"]
+
+[ext_resource type="Script" uid="uid://cqdvb3q6o8xmt" path="res://GodotEscenes/zombie_character.gd" id="1_c5d3v"]
+[ext_resource type="Texture2D" uid="uid://810onvma74d3" path="res://Assets/kenney_toon-characters-1/Zombie/PNG/Poses/character_zombie_attack0.png" id="1_rihk1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5d3v"]
+size = Vector2(51, 95)
+
+[node name="Zombie" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_c5d3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rihk1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 3
+position = Vector2(-4.5, 15.5)
+shape = SubResource("RectangleShape2D_c5d3v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

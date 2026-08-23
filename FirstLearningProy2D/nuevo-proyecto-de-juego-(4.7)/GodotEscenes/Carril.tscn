@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5cfwvxgudfdq"]
+
+[ext_resource type="Texture2D" uid="uid://ub6kx8ufjewd" path="res://Assets/Carril.png" id="1_txg45"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1x48"]
+size = Vector2(869, 13)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Carril" type="Sprite2D" parent="."]
+texture = ExtResource("1_txg45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 77)
+shape = SubResource("RectangleShape2D_e1x48")
