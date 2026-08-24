@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cbpoarblc7esv"]
+
+[ext_resource type="Script" uid="uid://csgqy5bivyhrn" path="res://Scripts/wasp.gd" id="1_suyl6"]
+[ext_resource type="Texture2D" uid="uid://b65olqed47a0g" path="res://Assets/personajes/character_zombie_side.png" id="1_voxyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
+size = Vector2(32, 32)
+
+[node name="Wasp" type="CharacterBody2D" unique_id=1322758780]
+collision_layer = 2
+script = ExtResource("1_suyl6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1332419220]
+shape = SubResource("RectangleShape2D_wgj6k")
+
+[node name="CharacterZombieSide" type="Sprite2D" parent="." unique_id=617961867]
+position = Vector2(0, -10)
+scale = Vector2(0.45833334, 0.3984375)
+texture = ExtResource("1_voxyu")
