@@ -7,7 +7,6 @@ extends TileMapLayer
 var celdas_ocupadas: Dictionary = {}
 
 func _input(event: InputEvent) -> void:
-	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var global_mouse_pos = get_global_mouse_position()
 		var tile_pos = local_to_map(to_local(global_mouse_pos))

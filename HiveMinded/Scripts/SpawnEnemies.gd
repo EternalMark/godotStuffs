@@ -16,14 +16,20 @@ var enemies=3
 
 func _on_timer_spawner_timeout() -> void:
 	#var numEnemies= randi_range(0,enemies)
-	var segundos = randi_range(0,5)
+	var segundos = randi_range(0,100)
 	$TimerSpawner.wait_time=segundos
 	#print("Spawneando ",numEnemies," enemigos"," Esperando: ")
-	print(" Esperando: ",segundos," segundos")
+	#print(" Esperando: ",segundos," segundos")
 	#var enemyI = 
+	#var tile_pos = local_to_map(to_local(spawn1))
+	
 	spawn1.add_child(enemy_scene.instantiate())
 	spawn2.add_child(enemy_scene.instantiate())
 	spawn3.add_child(enemy_scene.instantiate())
 	spawn4.add_child(enemy_scene.instantiate())
+	spawn5.add_child(enemy_scene.instantiate())
+	spawn6.add_child(enemy_scene.instantiate())
+	spawn7.add_child(enemy_scene.instantiate())
+	spawn8.add_child(enemy_scene.instantiate())
 	#for i in range(1,numEnemies):
 		#spawn1.add_child(enemyI)

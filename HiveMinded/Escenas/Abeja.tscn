@@ -1,19 +1,26 @@
 [gd_scene format=3 uid="uid://r1twrqc7uy3j"]
 
-[ext_resource type="Texture2D" uid="uid://c2qs5vhuvyiwn" path="res://Assets/personajes/icon.svg" id="1_8tfwe"]
+[ext_resource type="Script" uid="uid://glm6pbyc7l6b" path="res://Scripts/abeja.gd" id="1_d46a6"]
 [ext_resource type="Script" uid="uid://bgfj6fkw13ogo" path="res://Scripts/SpawnBullets.gd" id="2_ypl23"]
+[ext_resource type="Texture2D" uid="uid://b4sijnvxr0a56" path="res://Assets/personajes/character_maleAdventurer_attack0.png" id="3_d46a6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
-size = Vector2(32, 32)
+size = Vector2(32, 29)
 
-[node name="Abeja" type="CharacterBody2D" unique_id=1206253625]
+[node name="Abeja" type="CharacterBody2D" unique_id=1206253625 groups=["GrupoAbejas"]]
+script = ExtResource("1_d46a6")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=858527055]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_8tfwe")
+[node name="CharacterMaleAdventurerAttack0" type="Sprite2D" parent="." unique_id=1744582747]
+position = Vector2(0, -6)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_d46a6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=897683261]
 shape = SubResource("RectangleShape2D_wgj6k")
+
+[node name="lblVida" type="Label" parent="." unique_id=568101788]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="bullets" type="Node" parent="." unique_id=1512587682]
 script = ExtResource("2_ypl23")

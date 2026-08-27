@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://b25j0r10cmcyk"]
 
 [ext_resource type="Texture2D" uid="uid://ot1bssp21pb" path="res://Assets/Backgrounds/soil-32x32.png" id="1_fdcud"]
-[ext_resource type="Script" uid="uid://bf1uqkthvourj" path="res://Scripts/tml_battlefield.gd" id="2_sem21"]
+[ext_resource type="Script" uid="uid://6u84krkpndv4" path="res://Scripts/tml_battlefieldv3.gd" id="2_j5xpj"]
 [ext_resource type="Script" uid="uid://nxl20dtpaxl1" path="res://Scripts/SpawnEnemies.gd" id="3_j5xpj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sem21"]
@@ -76,7 +76,7 @@ tile_set = SubResource("TileSet_wgj6k")
 [node name="tmlBattlefield" type="TileMapLayer" parent="Layers" unique_id=1724636959]
 z_index = -1
 tile_set = SubResource("TileSet_2jc3q")
-script = ExtResource("2_sem21")
+script = ExtResource("2_j5xpj")
 
 [node name="Bees" type="Node" parent="." unique_id=262299162]
 

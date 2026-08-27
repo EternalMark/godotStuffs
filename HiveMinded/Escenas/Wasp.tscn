@@ -4,7 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://b65olqed47a0g" path="res://Assets/personajes/character_zombie_side.png" id="1_voxyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
-size = Vector2(32, 32)
+size = Vector2(26, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jc3q"]
+size = Vector2(31, 29)
 
 [node name="Wasp" type="CharacterBody2D" unique_id=1322758780 groups=["GrupoEnemigos"]]
 collision_layer = 2
@@ -18,7 +21,23 @@ position = Vector2(0, -10)
 scale = Vector2(0.45833334, 0.3984375)
 texture = ExtResource("1_voxyu")
 
+[node name="lblVida" type="Label" parent="." unique_id=1445192074]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="TimerMovimiento" type="Timer" parent="." unique_id=1048996133]
 wait_time = 0.5
 
+[node name="TimerAtacando" type="Timer" parent="." unique_id=450080693]
+wait_time = 0.5
+
+[node name="AreaDamage" type="Area2D" parent="." unique_id=35426183]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDamage" unique_id=1816207212]
+shape = SubResource("RectangleShape2D_2jc3q")
+
 [connection signal="timeout" from="TimerMovimiento" to="." method="_on_timer_movimiento_timeout"]
+[connection signal="timeout" from="TimerAtacando" to="." method="_on_timer_atacando_timeout"]
+[connection signal="body_entered" from="AreaDamage" to="." method="_on_area_damage_body_entered"]
+[connection signal="body_exited" from="AreaDamage" to="." method="_on_area_damage_body_exited"]
