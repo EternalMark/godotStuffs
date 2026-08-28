@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 50.0
+const SPEED = 10.0
 
 var vida: int =5
 var movimiento:bool=true

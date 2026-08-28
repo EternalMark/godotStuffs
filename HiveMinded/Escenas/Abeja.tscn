@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b4sijnvxr0a56" path="res://Assets/personajes/character_maleAdventurer_attack0.png" id="3_d46a6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
-size = Vector2(32, 29)
+size = Vector2(32, 25)
 
 [node name="Abeja" type="CharacterBody2D" unique_id=1206253625 groups=["GrupoAbejas"]]
 script = ExtResource("1_d46a6")

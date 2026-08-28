@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://b65olqed47a0g" path="res://Assets/personajes/character_zombie_side.png" id="1_voxyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
-size = Vector2(26, 31)
+size = Vector2(26, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jc3q"]
-size = Vector2(31, 29)
+size = Vector2(31, 25)
 
 [node name="Wasp" type="CharacterBody2D" unique_id=1322758780 groups=["GrupoEnemigos"]]
 collision_layer = 2
