@@ -15,6 +15,10 @@ run/main_scene="res://Escenas/Main.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://Assets/personajes/icon.svg"
 
+[autoload]
+
+GlobalGameState="*uid://bkxty17ln22mb"
+
 [display]
 
 window/size/viewport_width=640

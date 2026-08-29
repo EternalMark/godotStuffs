@@ -32,7 +32,7 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			#var global_mouse_pos = get_global_mouse_position()
 			#var tile_pos = local_to_map(to_local(global_mouse_pos))
-			if tile_pos.x >= 3 && tile_pos.y >= 2 && tile_pos.y <= 10:
+			if tile_pos.x >= 3 && tile_pos.y >= 2 && tile_pos.y <= 09:
 				# 1. Comprobar si la casilla ya está ocupada
 				if celdas_ocupadas.has(tile_pos):
 					print("Ya hay una abeja en la posición: ", tile_pos)
@@ -45,7 +45,7 @@ func _input(event: InputEvent) -> void:
 	
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				if is_instance_valid(celdas_ocupadas[tile_pos]) and celdas_ocupadas.has(tile_pos):
+				if celdas_ocupadas.has(tile_pos) and is_instance_valid(celdas_ocupadas[tile_pos]) :
 					abeja_arrastrada = celdas_ocupadas[tile_pos]
 					tile_origen = tile_pos
 					phantom_bee_instance = phantom_bee_scene.instantiate()

@@ -2,6 +2,7 @@ extends Node
 
 @onready var enemy_scene = preload("res://Escenas/Wasp.tscn")
 @onready var tilemap_layer: TileMapLayer = $"../Layers/tmlBattlefield"
+@onready var lblPuntos: Label = $"../Puntos"
 
 var enemies=3
 var spawners = 5
@@ -13,7 +14,7 @@ var posiciones_tiles: Array[Vector2i] = [
 	Vector2i(20, 5),	
 	Vector2i(20, 6),	
 	Vector2i(20, 7),	
-	Vector2i(20, 9),	
+	Vector2i(20, 8),	
 ]
 	
 func _on_timer_spawner_timeout() -> void:
@@ -33,9 +34,17 @@ func _on_timer_spawner_timeout() -> void:
 		
 		if generacion==1:
 			var enemy=enemy_scene.instantiate()
-			
+			enemy.enemigo_muerto.connect(_on_enemigo_muerto)
 			var pos_local = tilemap_layer.map_to_local(tile_pos)
 			var pos_global = tilemap_layer.to_global(pos_local)
 			
 			enemy.global_position = pos_global
 			add_child(enemy)
+			
+# Función que se ejecutará automáticamente cuando el enemigo emita 'enemigo_muerto'
+func _on_enemigo_muerto() -> void:
+	GlobalGameState.sumar_enemigo()
+	lblPuntos.text = "Enemigos Derrotados: "+ str(GlobalGameState.enemigos_derrotados) 
+	print("¡Un enemigo ha muerto!  ", GlobalGameState.enemigos_derrotados)
+	
+	# Aquí incrementas tu contador local o ejecutas la lógica que necesites

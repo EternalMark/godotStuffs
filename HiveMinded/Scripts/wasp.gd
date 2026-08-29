@@ -7,7 +7,7 @@ var movimiento:bool=true
 var beeCollition:bool=false
 var beeAtacada = null
 @onready var lblVida:Label =$lblVida
-
+signal enemigo_muerto
 
 func _physics_process(delta: float) -> void:
 	if movimiento:
@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 
 func Muerte() -> void:
 	if vida <=0:
+		enemigo_muerto.emit()
 		queue_free()
 		
 		
