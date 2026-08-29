@@ -4,17 +4,15 @@ extends Node
 @onready var tilemap_layer: TileMapLayer = $"../Layers/tmlBattlefield"
 @onready var lblPuntos: Label = $"../Puntos"
 
-var enemies=3
-var spawners = 5
+#var enemies=3
+#var spawners = 5
 
 var posiciones_tiles: Array[Vector2i] = [
-	Vector2i(20, 2),
-	Vector2i(20, 3),
-	Vector2i(20, 4),
-	Vector2i(20, 5),	
-	Vector2i(20, 6),	
-	Vector2i(20, 7),	
-	Vector2i(20, 8),	
+	Vector2i(16, 2),
+	Vector2i(16, 3),
+	Vector2i(16, 4),
+	Vector2i(16, 5),
+	Vector2i(16, 6),
 ]
 	
 func _on_timer_spawner_timeout() -> void:
@@ -45,6 +43,22 @@ func _on_timer_spawner_timeout() -> void:
 func _on_enemigo_muerto() -> void:
 	GlobalGameState.sumar_enemigo()
 	lblPuntos.text = "Enemigos Derrotados: "+ str(GlobalGameState.enemigos_derrotados) 
-	print("¡Un enemigo ha muerto!  ", GlobalGameState.enemigos_derrotados)
+	#print("¡Un enemigo ha muerto!  ", GlobalGameState.enemigos_derrotados)
 	
 	# Aquí incrementas tu contador local o ejecutas la lógica que necesites
+
+
+# Ejemplo en GDScript para calcular el tiempo del siguiente spawn
+func obtener_tiempo_siguiente_enemigo(tiempo_juego: float) -> float:
+	var base_time: float = 3.0       # Tiempo promedio entre spawns (3 segundos)
+	var amplitud: float = 1.5        # Cuánto acelera/desacelera la ola
+	var frecuencia: float = 0.1      # Vel. de cambio entre oleadas
+	
+	# La función sin() variará rítmicamente entre -1.5 y +1.5 segundos
+	var wave: float = amplitud * sin(frecuencia * tiempo_juego)
+	
+	# Variación aleatoria pura de +/- 0.5 segundos para no ser predecible
+	var noise: float = randf_range(-0.5, 0.5)
+	
+	# Aseguramos que el tiempo nunca sea cero o negativo
+	return max(0.5, base_time + wave + noise)
