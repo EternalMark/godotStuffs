@@ -90,6 +90,7 @@ script = ExtResource("2_j5xpj")
 script = ExtResource("3_j5xpj")
 
 [node name="TimerSpawner" type="Timer" parent="Enemies" unique_id=1466772913]
+wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="Enemies/TimerSpawner" to="Enemies" method="_on_timer_spawner_timeout"]

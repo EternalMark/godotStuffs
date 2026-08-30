@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://caiygx3xl0c0v"]
 
+[ext_resource type="Script" uid="uid://dq0hettn6w4gx" path="res://Scripts/phantom_bee.gd" id="1_8ekul"]
 [ext_resource type="Texture2D" uid="uid://cngm5lwo2eybb" path="res://Assets/personajes/character_maleAdventurer_climb1.png" id="1_dr2m7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jc3q"]
+size = Vector2(30, 30)
+
 [node name="PhantomBee" type="CharacterBody2D" unique_id=806636921]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 2
+script = ExtResource("1_8ekul")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=209814893]
 shape = SubResource("RectangleShape2D_wgj6k")
@@ -14,3 +19,13 @@ shape = SubResource("RectangleShape2D_wgj6k")
 [node name="CharacterMaleAdventurerClimb1" type="Sprite2D" parent="." unique_id=1854813661]
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("1_dr2m7")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1876175368]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=297070919]
+shape = SubResource("RectangleShape2D_2jc3q")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

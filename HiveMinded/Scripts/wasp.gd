@@ -8,6 +8,8 @@ var beeCollition:bool=false
 var beeAtacada = null
 @onready var lblVida:Label =$lblVida
 signal enemigo_muerto
+var tile_pos:Vector2i
+
 
 func _physics_process(delta: float) -> void:
 	if movimiento:

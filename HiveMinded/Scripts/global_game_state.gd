@@ -2,11 +2,13 @@ extends Node
 
 # Variable global para contar los enemigos eliminados
 var enemigos_derrotados: int = 0
-
+#var iteraciones: int = 0
+var cantidad_enemigos:int=0
 
 
 func sumar_enemigo() -> void:
 	enemigos_derrotados += 1
+	cantidad_enemigos-=1
 	var fecha = Time.get_datetime_dict_from_system()
 	var milisegundos = Time.get_ticks_msec() % 1000
 	print("%04d-%02d-%02d %02d:%02d:%02d.%03d" % [

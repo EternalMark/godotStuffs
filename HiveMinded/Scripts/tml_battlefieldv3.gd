@@ -18,12 +18,7 @@ var tile_origen = null
 func _process(_delta: float) -> void:
 	# Mientras estemos arrastrando una abeja, su posición sigue al ratón
 	if is_instance_valid(abeja_arrastrada):
-		#phantom_bee_instance.z_index = 100
 		phantom_bee_instance.global_position = get_global_mouse_position()
-		# Mantenemos a la abeja arrastrada por encima de los demás nodos
-		#abeja_arrastrada.z_index = 100
-		#Si la abeja o sus hijos están en un contenedor externo, convertimos el ratón a global
-		#abeja_arrastrada.global_position = get_global_mouse_position()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton: 
@@ -55,26 +50,31 @@ func _input(event: InputEvent) -> void:
 			## Soltar mouse
 			elif not event.pressed and abeja_arrastrada != null:
 				## Restaurar el orden de dibujo original
-				abeja_arrastrada.z_index = 0
 
-				# CASO 1: Tile destino vacio
-				if not celdas_ocupadas.has(tile_pos) or not is_instance_valid(celdas_ocupadas[tile_pos]):
-					# Asignar la abeja al nuevo tile
-					abeja_arrastrada.position = map_to_local(tile_pos)
-					celdas_ocupadas[tile_pos] = abeja_arrastrada
-					celdas_ocupadas.erase(tile_origen)
+				if phantom_bee_instance.espacioOcupado==false and tile_pos.x >= 3 and tile_pos.x <= 7 and tile_pos.y >= 2 and tile_pos.y <= 7:
+					print("Espacio Libre")
 					
-				# CASO 2: Tile destino ocupado -> Intercambiar posiciones
-				else:
-					var abeja_destino = celdas_ocupadas[tile_pos]
+					# CASO 1: Tile destino vacio
+					if not celdas_ocupadas.has(tile_pos) or not is_instance_valid(celdas_ocupadas[tile_pos]):
+						# Asignar la abeja al nuevo tile
+						abeja_arrastrada.position = map_to_local(tile_pos)
+						abeja_arrastrada.tile_pos=tile_pos
+						celdas_ocupadas[tile_pos] = abeja_arrastrada
+						celdas_ocupadas.erase(tile_origen)
 						
-					# Intercambiar la abeja ocupante a la casilla de origen
-					abeja_destino.position = map_to_local(tile_origen)
-					celdas_ocupadas[tile_origen] = abeja_destino
-					
-					# Colocar la abeja arrastrada en la casilla de destino
-					abeja_arrastrada.position = map_to_local(tile_pos)
-					celdas_ocupadas[tile_pos] = abeja_arrastrada
+					# CASO 2: Tile destino ocupado -> Intercambiar posiciones
+					else:
+						var abeja_destino = celdas_ocupadas[tile_pos]
+						
+						# Intercambiar la abeja ocupante a la casilla de origen
+						abeja_destino.position = map_to_local(tile_origen)
+						abeja_destino.tile_pos=tile_origen
+						celdas_ocupadas[tile_origen] = abeja_destino
+						
+						# Colocar la abeja arrastrada en la casilla de destino
+						abeja_arrastrada.position = map_to_local(tile_pos)
+						abeja_arrastrada.tile_pos=tile_pos
+						celdas_ocupadas[tile_pos] = abeja_arrastrada
 				
 				## Limpiar variables de control
 				abeja_arrastrada = null
@@ -83,8 +83,10 @@ func _input(event: InputEvent) -> void:
 				phantom_bee_instance=null
 				get_viewport().set_input_as_handled()
 
+
 func colocar_abeja(tile_pos: Vector2i) -> void:
 	var bee_instance = bee_scene.instantiate()
 	bee_instance.position = map_to_local(tile_pos)
+	bee_instance.tile_pos=tile_pos
 	celdas_ocupadas[tile_pos] = bee_instance
 	abejas_container.add_child(bee_instance)

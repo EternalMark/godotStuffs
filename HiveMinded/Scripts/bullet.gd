@@ -8,6 +8,10 @@ var sinEnemigoAtacado:bool=true
 func _physics_process(delta: float) -> void:
 	#velocity=Direction.normalized() * speed
 	velocity.x = speed * 1
+	if global_position.x >= 1200:
+		#print("Destruyendo bala: ",global_position)
+		queue_free()
+	
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -17,3 +21,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		sinEnemigoAtacado=false
 		#print("Enemigo ",body.name, " recibe daño. Vida: ", vida)
 		queue_free()
+		
