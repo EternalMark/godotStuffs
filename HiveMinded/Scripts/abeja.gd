@@ -16,4 +16,3 @@ func TakeDamage(damage:int)-> int:
 func Muerte() -> void:
 	print("Abeja Muere")
 	queue_free()
-		

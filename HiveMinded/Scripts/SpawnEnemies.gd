@@ -47,11 +47,9 @@ func _on_timer_spawner_timeout() -> void:
 			
 # Función que se ejecutará automáticamente cuando el enemigo emita 'enemigo_muerto'
 func _on_enemigo_muerto() -> void:
-	GlobalGameState.sumar_enemigo()
+	GlobalGameState.nuevo_enemigo_derrotado()
 	lblPuntos.text = "Enemigos Derrotados: "+ str(GlobalGameState.enemigos_derrotados) 
-	#print("¡Un enemigo ha muerto!  ", GlobalGameState.enemigos_derrotados)
 	
-	# Aquí incrementas tu contador local o ejecutas la lógica que necesites
 
 func genera_enemigo():
 	var generacion = randi_range(0,5)
