@@ -2,9 +2,14 @@ extends CharacterBody2D
 
 var vida: int =5
 var tile_pos:Vector2i
-
+var experiencia:int=0
 #var movimiento:bool=true
 @onready var lblVida:Label =$lblVida
+
+func incrementaExperiencia(exp:int) -> void:
+	experiencia+=exp
+	print(" incrementa experiencia: ",experiencia)
+	
 
 func TakeDamage(damage:int)-> int:
 	vida -=damage

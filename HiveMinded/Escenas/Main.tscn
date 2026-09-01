@@ -65,12 +65,21 @@ tile_size = Vector2i(40, 40)
 
 [node name="Main" type="Node2D" unique_id=1547793932]
 
+[node name="SiguienteHito" type="Label" parent="." unique_id=765902840]
+offset_left = 427.0
+offset_top = 40.0
+offset_right = 612.0
+offset_bottom = 63.0
+text = "Por derrotar: 0"
+metadata/_edit_use_anchors_ = true
+
 [node name="Puntos" type="Label" parent="." unique_id=1632966469]
 offset_left = 427.0
 offset_top = 15.0
 offset_right = 612.0
 offset_bottom = 38.0
 text = "Enemigos Derrotados: 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="Layers" type="Node" parent="." unique_id=1377647449]
 
