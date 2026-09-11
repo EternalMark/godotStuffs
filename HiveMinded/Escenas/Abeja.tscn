@@ -7,6 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
 size = Vector2(32, 25)
 
+[sub_resource type="LabelSettings" id="LabelSettings_wgj6k"]
+line_spacing = 0.0
+font_size = 5
+
 [node name="Abeja" type="CharacterBody2D" unique_id=1206253625 groups=["GrupoAbejas"]]
 script = ExtResource("1_d46a6")
 
@@ -21,6 +25,13 @@ shape = SubResource("RectangleShape2D_wgj6k")
 [node name="lblVida" type="Label" parent="." unique_id=568101788]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="lblExperiencia" type="Label" parent="." unique_id=541268797]
+offset_left = -40.0
+offset_top = -23.0
+offset_right = -16.0
+label_settings = SubResource("LabelSettings_wgj6k")
+horizontal_alignment = 2
 
 [node name="bullets" type="Node" parent="." unique_id=1512587682]
 script = ExtResource("2_ypl23")

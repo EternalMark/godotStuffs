@@ -19,9 +19,9 @@ var posiciones_tiles: Array[Vector2i] = [
 	Vector2i(16, 7),
 ]
 	
-	
 func _ready() -> void:
 	genera_enemigo()
+	lblSiguienteHito.text = "Por derrotar: "+ str(GlobalGameState.hito_siguiente) 
 	
 func _on_timer_spawner_timeout() -> void:
 	if not tilemap_layer:
@@ -29,9 +29,14 @@ func _on_timer_spawner_timeout() -> void:
 		return
 	genera_enemigo()
 	$TimerSpawner.wait_time=max(0.1,GlobalGameState.delay_generacion_enemigos)
-	print("Waittime: \t",$TimerSpawner.wait_time,"\tCantidad de enemigos: \t",GlobalGameState.cantidad_enemigos)
+	
+	var fecha = Time.get_datetime_dict_from_system()
+	var milisegundos = Time.get_ticks_msec() % 1000
+	print("%04d-%02d-%02d %02d:%02d:%02d.%03d" % [
+	fecha["year"], fecha["month"], fecha["day"],
+	fecha["hour"], fecha["minute"], fecha["second"],
+	milisegundos]," Waittime: \t",$TimerSpawner.wait_time,"\tCantidad de enemigos: \t",GlobalGameState.cantidad_enemigos)
 
-			
 # Función que se ejecutará automáticamente cuando el enemigo emita 'enemigo_muerto'
 func _on_enemigo_muerto() -> void:
 	GlobalGameState.nuevo_enemigo_derrotado()

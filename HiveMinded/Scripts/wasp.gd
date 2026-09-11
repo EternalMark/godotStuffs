@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 10.0
 
-var vida: int =5
+var vida: float =5
 var movimiento:bool=true
 var beeCollition:bool=false
 var beeAtacada = null
@@ -22,7 +22,7 @@ func Muerte() -> void:
 		queue_free()
 		
 		
-func TakeDamage(damage:int)-> int:
+func TakeDamage(damage:float)-> float:
 	vida -=damage
 	lblVida.text=str(vida)
 	if vida <=0:

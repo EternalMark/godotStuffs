@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="HiveMinded"
-run/main_scene="res://Escenas/Main.tscn"
+run/main_scene="uid://p78ns76pn4ll"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://Assets/personajes/icon.svg"
 

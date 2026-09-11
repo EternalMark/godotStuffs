@@ -71,6 +71,8 @@ func _input(event: InputEvent) -> void:
 				phantom_bee_instance=null
 				get_viewport().set_input_as_handled()
 
+
+
 func colocar_abeja(tile_pos: Vector2i) -> void:
 	var bee_instance = bee_scene.instantiate()
 	bee_instance.position = map_to_local(tile_pos)

@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://ot1bssp21pb" path="res://Assets/Backgrounds/soil-32x32.png" id="1_fdcud"]
 [ext_resource type="Script" uid="uid://6u84krkpndv4" path="res://Scripts/tml_battlefieldv3.gd" id="2_j5xpj"]
 [ext_resource type="Script" uid="uid://nxl20dtpaxl1" path="res://Scripts/SpawnEnemies.gd" id="3_j5xpj"]
+[ext_resource type="PackedScene" uid="uid://cs2t5xq45ylls" path="res://Escenas/menu_pausa.tscn" id="4_3yqt6"]
+[ext_resource type="Script" uid="uid://bhudeu5xwulyl" path="res://Scripts/MenuPausa.gd" id="5_mbvap"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sem21"]
 texture = ExtResource("1_fdcud")
@@ -101,5 +103,9 @@ script = ExtResource("3_j5xpj")
 [node name="TimerSpawner" type="Timer" parent="Enemies" unique_id=1466772913]
 wait_time = 5.0
 autostart = true
+
+[node name="MenuPausa" parent="." unique_id=996196594 instance=ExtResource("4_3yqt6")]
+process_mode = 3
+script = ExtResource("5_mbvap")
 
 [connection signal="timeout" from="Enemies/TimerSpawner" to="Enemies" method="_on_timer_spawner_timeout"]
