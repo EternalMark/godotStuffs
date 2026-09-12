@@ -5,7 +5,7 @@ extends TileMapLayer
 @onready var abejas_container = $"../../Bees"
 
 
-var ubicacion_nueva_abeja=Vector2i(2, 1)
+var ubicacion_nueva_abeja=Vector2i(3, 1)
 var phantom_bee_instance
 # Diccionario para rastrear la abeja en cada casilla: Vector2i -> Node2D
 var celdas_ocupadas: Dictionary = {}

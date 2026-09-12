@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cs2t5xq45ylls"]
 
+[ext_resource type="Script" uid="uid://bhudeu5xwulyl" path="res://Scripts/MenuPausa.gd" id="1_vhfbk"]
+
 [node name="MenuPausa" type="CanvasLayer" unique_id=996196594]
 process_mode = 3
+script = ExtResource("1_vhfbk")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=249411195]
 visible = false

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b5ov4nfjv8kr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wgj6k"]
+font_size = 5
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
+size = Vector2(15, 15)
+
+[node name="Caramelo" type="CharacterBody2D" unique_id=1087394322]
+
+[node name="name" type="Label" parent="." unique_id=1485892386]
+z_index = 1
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 6.0
+offset_bottom = 5.0
+text = "ATQ"
+label_settings = SubResource("LabelSettings_wgj6k")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1025703379]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+size_flags_horizontal = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=953263217]
+shape = SubResource("RectangleShape2D_wgj6k")
