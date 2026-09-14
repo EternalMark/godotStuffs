@@ -6,7 +6,6 @@ var Direction: Vector2
 var owner_character: CharacterBody2D = null
 var piercing:int=1
 
-
 func _physics_process(delta: float) -> void:
 	#velocity=Direction.normalized() * speed
 	velocity.x = owner_character.bulletSpeed * 1
@@ -17,12 +16,15 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	#print("La bala entro a un cuerpo: ", body.name)
-	#if body.is_in_group("GrupoEnemigos") and sinEnemigoAtacado:
 	if body.is_in_group("GrupoEnemigos"):
 		var vidaEnemigo = body.TakeDamage(owner_character.bulletDamage)
-		owner_character.incrementaExperiencia(1)
-		if vidaEnemigo <=0:
-			owner_character.incrementaExperiencia(2)
+
+		#region experiencia_Deprecada
+		#owner_character.incrementaExperiencia(1)
+		#if vidaEnemigo <=0:
+			#owner_character.incrementaExperiencia(2)
+		#endregion
+		
 		#sinEnemigoAtacado=false
 		#print("Enemigo ",body.name, " recibe daño. Vida: ", vida)
 		piercing-=1
