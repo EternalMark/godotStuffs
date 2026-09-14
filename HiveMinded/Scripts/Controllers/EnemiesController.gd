@@ -1,10 +1,12 @@
 extends Node
 
 @onready var enemy_scene = preload("res://Escenas/Wasp.tscn")
-@onready var tilemap_layer: TileMapLayer = $"../Layers/tmlBattlefield"
+#@onready var tilemap_layer: TileMapLayer = $"../Layers/tmlBattlefield"
+@onready var tml_battlefield: TileMapLayer = $"../Layers/tmlBattlefield"
 
-@onready var lblPuntos =$"../Puntos"
+#@onready var lblPuntos =$"../Puntos"
 @onready var lblSiguienteHito= $"../SiguienteHito"
+#@onready var lbl_monedas: Label = $"../lblMonedas"
 
 #var ajusteCantidad:float=2
 #var enemies=3
@@ -24,7 +26,7 @@ func _ready() -> void:
 	lblSiguienteHito.text = "Por derrotar: "+ str(GlobalGameState.hito_siguiente) 
 	
 func _on_timer_spawner_timeout() -> void:
-	if not tilemap_layer:
+	if not tml_battlefield:
 		print("Falta asignar el TileMapLayer o la escena Spawner")
 		return
 	genera_enemigo()
@@ -38,18 +40,30 @@ func _on_timer_spawner_timeout() -> void:
 	milisegundos]," Waittime: \t",$TimerSpawner.wait_time,"\tCantidad de enemigos: \t",GlobalGameState.cantidad_enemigos)
 
 # Función que se ejecutará automáticamente cuando el enemigo emita 'enemigo_muerto'
-func _on_enemigo_muerto() -> void:
+func _on_enemigo_muerto(posicionGlobal) -> void:
+	
+	#region GeneraDrop
+	var tile_pos=tml_battlefield.local_to_map(tml_battlefield.to_local(posicionGlobal))
+	print("Enemigo muerto. Posicion: ",tile_pos)
+	if tile_pos.x > GameConstants.ENEMY_POSX_FAR:
+		GlobalGameState.monedas+=GameConstants.DROP_COINS_FAR
+	elif tile_pos.x > GameConstants.ENEMY_POSX_NEAR: 
+		GlobalGameState.monedas+=GameConstants.DROP_COINS_NEAR
+	else:
+		GlobalGameState.monedas+=GameConstants.DROP_COINS_CLOSER
+	#endregion
+	
 	GlobalGameState.nuevo_enemigo_derrotado()
-	lblPuntos.text = "Enemigos Derrotados: "+ str(GlobalGameState.enemigos_derrotados) 
-	lblSiguienteHito.text = "Por derrotar: "+ str(GlobalGameState.hito_siguiente) 
+	
 
 func genera_enemigo():
 	var generacion = randi_range(0,5)
 	var enemy=enemy_scene.instantiate()
 	enemy.enemigo_muerto.connect(_on_enemigo_muerto)
+	#enemy.enemigo_muerto.connect(GlobalGameState._on_enemigo_muerto)
 	enemy.tile_pos=posiciones_tiles[generacion]
-	var pos_local = tilemap_layer.map_to_local(posiciones_tiles[generacion])
-	var pos_global = tilemap_layer.to_global(pos_local)
+	var pos_local = tml_battlefield.map_to_local(posiciones_tiles[generacion])
+	var pos_global = tml_battlefield.to_global(pos_local)
 	enemy.global_position = pos_global
 	GlobalGameState.cantidad_enemigos+=1
 	add_child(enemy)

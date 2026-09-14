@@ -7,8 +7,9 @@ var movimiento:bool=true
 var beeCollition:bool=false
 var beeAtacada = null
 @onready var lblVida:Label =$lblVida
-signal enemigo_muerto
+signal enemigo_muerto(posicionGlobal:Vector2i)
 var tile_pos:Vector2i
+
 
 
 func _physics_process(delta: float) -> void:
@@ -17,8 +18,9 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func Muerte() -> void:
+	var dropCoin:int
 	if vida <=0:
-		enemigo_muerto.emit()
+		enemigo_muerto.emit(self.global_position)
 		queue_free()
 		
 		
@@ -44,7 +46,7 @@ func _on_area_damage_body_entered(body: Node2D) -> void:
 		movimiento=false
 		beeCollition=true
 		beeAtacada=body
-		var vida = beeAtacada.TakeDamage(1)
+		beeAtacada.TakeDamage(1)
 		$TimerAtacando.start()
 		#queue_free()
 		#print("Abeja ",body.name, " recibe daño. Vida: ", vida)
@@ -58,5 +60,5 @@ func _on_area_damage_body_exited(body: Node2D) -> void:
 
 func _on_timer_atacando_timeout() -> void:
 	if beeCollition:
-		var vida = beeAtacada.TakeDamage(1)
+		beeAtacada.TakeDamage(1)
 		print("Abeja ",beeAtacada.name, " recibe daño por TIMEOUT. Vida: ", vida)
