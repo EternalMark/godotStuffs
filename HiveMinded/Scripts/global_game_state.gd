@@ -7,7 +7,6 @@ var hito_actual:int=0
 var abejas_generadas:int=0
 var hito_siguiente:int=10
 var delay_generacion_enemigos:float=5.0
-
 var monedas:int=0
 
 #Las abejas se posicionan entre el 3 al 7
@@ -19,12 +18,13 @@ signal actualizaUI
 signal findeljuego
 signal inicializaJuego
 
-var gameState:GAME_STATES = GAME_STATES.IN_PROGRESS
+var gameState:GameConstants.GAME_STATES = GameConstants.GAME_STATES.IN_PROGRESS
 
-enum GAME_STATES {
-	IN_PROGRESS,
-	ENDGAME
-}
+#
+#enum GAME_STATES {
+	#IN_PROGRESS,
+	#ENDGAME
+#}
 
 const hitos = [5,2.5,2.0,1.5,1.0,0.5,0.4,0.3,0.2,0.1]
 
@@ -51,7 +51,7 @@ func nuevo_enemigo_derrotado() -> void:
 	#print("%04d-%02d-%02d %02d:%02d:%02d.%03d" % [fecha["year"], fecha["month"], fecha["day"],fecha["hour"], fecha["minute"], fecha["second"],milisegundos],"\tEnemigos derrotados: \t", enemigos_derrotados)
 	
 func enemigo_en_goalzone()->void:
-	gameState=GAME_STATES.ENDGAME
+	gameState=GameConstants.GAME_STATES.ENDGAME
 	print("Fin del juego emitido")
 	findeljuego.emit()
 	
@@ -64,5 +64,5 @@ func reiniciar_partida()->void:
 	hito_siguiente=10
 	delay_generacion_enemigos=5.0
 	monedas=0
-	gameState = GAME_STATES.IN_PROGRESS
+	gameState = GameConstants.GAME_STATES.IN_PROGRESS
 	inicializaJuego.emit()

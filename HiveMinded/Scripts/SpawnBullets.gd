@@ -3,7 +3,6 @@ extends Node
 @onready var bullet_scene = preload("res://Escenas/Bullet.tscn")
 @onready var bee: CharacterBody2D = owner
 
-
 func _on_timer_spawn_bullet_timeout() -> void:
 	var enemies = get_tree().get_nodes_in_group("GrupoEnemigos")
 	for enemy in enemies:

@@ -7,7 +7,7 @@ extends Node
 @onready var menu_fin_juego: CanvasLayer = $MenuFinJuego
 
 func _ready() -> void:
-	GlobalGameState.gameState=GlobalGameState.GAME_STATES.IN_PROGRESS
+	GlobalGameState.gameState=GameConstants.GAME_STATES.IN_PROGRESS
 	GlobalGameState.actualizaUI.connect(actualizaUI)
 	GlobalGameState.findeljuego.connect(findeljuego)
 	GlobalGameState.reiniciar_partida()

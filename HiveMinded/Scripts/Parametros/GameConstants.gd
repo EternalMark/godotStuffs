@@ -15,4 +15,15 @@ const TWO:int=2
 const THREE:int=3
 const FOUR:int=4
 const FIFTY:int=50
+const ONEHUNDRED:int=100
 #endregion
+
+enum GAME_STATES {
+	IN_PROGRESS,
+	ENDGAME
+}
+
+enum CARAMEL_TYPE {
+	BEE,
+	POWERUP
+}
