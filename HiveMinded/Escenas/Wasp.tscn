@@ -33,6 +33,7 @@ wait_time = 0.5
 
 [node name="AreaDamage" type="Area2D" parent="." unique_id=35426183]
 collision_layer = 4
+collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDamage" unique_id=1816207212]
 shape = SubResource("RectangleShape2D_2jc3q")

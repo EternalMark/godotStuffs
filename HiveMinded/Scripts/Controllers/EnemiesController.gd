@@ -54,12 +54,17 @@ func _on_enemigo_muerto(posicionGlobal) -> void:
 	#endregion
 	
 	GlobalGameState.nuevo_enemigo_derrotado()
-	
+
+#func _on_enemy_on_goalzone()->void:
+	#print("Señal emitida de fin del juego")
+	#
+	#pass
 
 func genera_enemigo():
 	var generacion = randi_range(0,5)
 	var enemy=enemy_scene.instantiate()
 	enemy.enemigo_muerto.connect(_on_enemigo_muerto)
+	#enemy.enemigo_on_goalzone.connect(_on_enemy_on_goalzone)
 	#enemy.enemigo_muerto.connect(GlobalGameState._on_enemigo_muerto)
 	enemy.tile_pos=posiciones_tiles[generacion]
 	var pos_local = tml_battlefield.map_to_local(posiciones_tiles[generacion])
@@ -82,3 +87,6 @@ func obtener_tiempo_siguiente_enemigo(tiempo_juego: float) -> float:
 	
 	# Aseguramos que el tiempo nunca sea cero o negativo
 	return max(0.5, base_time + wave + noise)
+
+func enemigo_llego_a_meta()-> void:
+	pass

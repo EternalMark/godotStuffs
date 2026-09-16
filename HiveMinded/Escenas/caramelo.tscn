@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b5ov4nfjv8kr"]
 
+[ext_resource type="Script" uid="uid://ccqlvd3fuyj33" path="res://Scripts/caramelo.gd" id="1_t4wcf"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_wgj6k"]
 font_size = 5
 font_color = Color(0, 0, 0, 1)
@@ -8,6 +10,8 @@ font_color = Color(0, 0, 0, 1)
 size = Vector2(15, 15)
 
 [node name="Caramelo" type="CharacterBody2D" unique_id=1087394322]
+collision_layer = 16
+script = ExtResource("1_t4wcf")
 
 [node name="name" type="Label" parent="." unique_id=1485892386]
 z_index = 1

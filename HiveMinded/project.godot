@@ -30,6 +30,7 @@ window/stretch/aspect="expand"
 
 GrupoEnemigos=""
 GrupoAbejas=""
+GrupoMetas=""
 
 [input]
 
@@ -43,6 +44,12 @@ boton_sube_niveles={
 
 2d_render/layer_1="Abejas"
 2d_render/layer_2="Enemigos"
+2d_physics/layer_1="Abejas"
+2d_physics/layer_2="Enemigos"
+2d_physics/layer_3="Bullets"
+2d_physics/layer_4="Phantoms"
+2d_physics/layer_5="Caramels"
+2d_physics/layer_6="Meta"
 
 [physics]
 

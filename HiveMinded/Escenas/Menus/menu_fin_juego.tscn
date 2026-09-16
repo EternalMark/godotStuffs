@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://betnd04ysmr5r"]
+
+[ext_resource type="Script" uid="uid://di0jydbw0yrb6" path="res://Scripts/menu_fin_juego.gd" id="1_gmbpa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wgj6k"]
+font_size = 41
+
+[sub_resource type="FontVariation" id="FontVariation_h1q5j"]
+variation_face_index = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_2jc3q"]
+font = SubResource("FontVariation_h1q5j")
+
+[node name="MenuFinJuego" type="CanvasLayer" unique_id=1960306438]
+process_mode = 3
+visible = false
+script = ExtResource("1_gmbpa")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=862835965]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6862745, 0.047058824, 0.14509805, 0.5529412)
+
+[node name="Label" type="Label" parent="." unique_id=1175010864]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -54.5
+offset_right = 49.0
+offset_bottom = -31.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Fin del juego"
+label_settings = SubResource("LabelSettings_wgj6k")
+
+[node name="Label2" type="Label" parent="." unique_id=1150019888]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = 6.5
+offset_right = 143.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Los enemigos entraron a tu fortaleza"
+
+[node name="Label3" type="Label" parent="." unique_id=1390505372]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 65.5
+offset_right = 20.0
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Presiona enter"
+label_settings = SubResource("LabelSettings_2jc3q")

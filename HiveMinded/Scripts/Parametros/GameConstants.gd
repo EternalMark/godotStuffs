@@ -14,4 +14,5 @@ const ONE:int=1
 const TWO:int=2
 const THREE:int=3
 const FOUR:int=4
+const FIFTY:int=50
 #endregion

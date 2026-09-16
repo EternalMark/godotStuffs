@@ -17,7 +17,8 @@ func _on_timer_spawn_bullet_timeout() -> void:
 
 func creaBullet() -> Node:
 	var b=bullet_scene.instantiate()
-	b.owner_character=bee
-	b.piercing = bee.bulletPiercing
+	#b.owner_character=bee
+	#b.piercing = bee.caracteristicas.bulletPiercing
+	b.caracteristicas = bee.caracteristicas
 	b.global_position=$"..".global_position
 	return b

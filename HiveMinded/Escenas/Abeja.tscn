@@ -9,13 +9,14 @@ size = Vector2(32, 25)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wgj6k"]
 line_spacing = 0.0
+paragraph_spacing = -4.0
 font_size = 5
 
 [node name="Abeja" type="CharacterBody2D" unique_id=1206253625 groups=["GrupoAbejas"]]
 script = ExtResource("1_d46a6")
 
 [node name="CharacterMaleAdventurerAttack0" type="Sprite2D" parent="." unique_id=1744582747]
-position = Vector2(0, -6)
+position = Vector2(0, -9)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("3_d46a6")
 
@@ -23,8 +24,9 @@ texture = ExtResource("3_d46a6")
 shape = SubResource("RectangleShape2D_wgj6k")
 
 [node name="lblVida" type="Label" parent="." unique_id=568101788]
+offset_top = -3.0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 20.0
 
 [node name="lblExperiencia" type="Label" parent="." unique_id=541268797]
 offset_left = -40.0

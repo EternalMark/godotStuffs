@@ -7,10 +7,11 @@ var movimiento:bool=true
 var beeCollition:bool=false
 var beeAtacada = null
 @onready var lblVida:Label =$lblVida
+
 signal enemigo_muerto(posicionGlobal:Vector2i)
+#signal enemigo_on_goalzone
+
 var tile_pos:Vector2i
-
-
 
 func _physics_process(delta: float) -> void:
 	if movimiento:
@@ -23,7 +24,6 @@ func Muerte() -> void:
 		enemigo_muerto.emit(self.global_position)
 		queue_free()
 		
-		
 func TakeDamage(damage:float)-> float:
 	vida -=damage
 	lblVida.text=str(vida)
@@ -35,6 +35,10 @@ func TakeDamage(damage:float)-> float:
 		movimiento=false
 		$TimerMovimiento.start()
 	return vida 
+
+#func enemigo_on_goal_zone() -> void:
+	#print("Enemigo %s ha entrado al area de meta" % [self.name])
+	##enemigo_on_goalzone.emit()
 
 func _on_timer_movimiento_timeout() -> void:
 	movimiento=true
@@ -50,6 +54,9 @@ func _on_area_damage_body_entered(body: Node2D) -> void:
 		$TimerAtacando.start()
 		#queue_free()
 		#print("Abeja ",body.name, " recibe daño. Vida: ", vida)
+	elif body.is_in_group("GrupoMetas"):
+		print("Enemigo %s ha entrado al area de meta" % [self.name])
+		GlobalGameState.enemigo_en_goalzone()
 
 func _on_area_damage_body_exited(body: Node2D) -> void:
 	if body.is_in_group("GrupoAbejas"):
@@ -62,3 +69,4 @@ func _on_timer_atacando_timeout() -> void:
 	if beeCollition:
 		beeAtacada.TakeDamage(1)
 		print("Abeja ",beeAtacada.name, " recibe daño por TIMEOUT. Vida: ", vida)
+		
