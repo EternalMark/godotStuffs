@@ -20,12 +20,6 @@ signal inicializaJuego
 
 var gameState:GameConstants.GAME_STATES = GameConstants.GAME_STATES.IN_PROGRESS
 
-#
-#enum GAME_STATES {
-	#IN_PROGRESS,
-	#ENDGAME
-#}
-
 const hitos = [5,2.5,2.0,1.5,1.0,0.5,0.4,0.3,0.2,0.1]
 
 func cambio_hito()->void:
@@ -49,7 +43,11 @@ func nuevo_enemigo_derrotado() -> void:
 	#var fecha = Time.get_datetime_dict_from_system()
 	#var milisegundos = Time.get_ticks_msec() % 1000
 	#print("%04d-%02d-%02d %02d:%02d:%02d.%03d" % [fecha["year"], fecha["month"], fecha["day"],fecha["hour"], fecha["minute"], fecha["second"],milisegundos],"\tEnemigos derrotados: \t", enemigos_derrotados)
-	
+
+func actualizaMonedas(monto:int)->void:
+	monedas+=monto
+	actualizaUI.emit()
+
 func enemigo_en_goalzone()->void:
 	gameState=GameConstants.GAME_STATES.ENDGAME
 	print("Fin del juego emitido")

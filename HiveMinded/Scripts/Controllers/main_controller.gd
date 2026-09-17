@@ -1,8 +1,8 @@
 extends Node
 
-@onready var siguiente_hito: Label = $SiguienteHito
-@onready var puntos: Label = $Puntos
-@onready var lbl_monedas: Label = $lblMonedas
+@onready var siguiente_hito: Label = $CanvasLayer/SiguienteHito
+@onready var puntos: Label = $CanvasLayer/Puntos
+@onready var lbl_monedas: Label = $CanvasLayer/lblMonedas
 @onready var menu_pausa: CanvasLayer = $MenuPausa
 @onready var menu_fin_juego: CanvasLayer = $MenuFinJuego
 

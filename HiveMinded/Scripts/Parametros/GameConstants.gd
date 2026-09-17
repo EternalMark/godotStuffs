@@ -18,6 +18,13 @@ const FIFTY:int=50
 const ONEHUNDRED:int=100
 #endregion
 
+#region MoverAbejas
+const allowTilesInitX:int=1
+const allowTilesInitY:int=1
+const allowTilesFinalX:int=5
+const allowTilesFinalY:int=6
+#endregion
+
 enum GAME_STATES {
 	IN_PROGRESS,
 	ENDGAME

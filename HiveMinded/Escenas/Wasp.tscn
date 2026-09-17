@@ -17,9 +17,9 @@ script = ExtResource("1_suyl6")
 shape = SubResource("RectangleShape2D_wgj6k")
 
 [node name="CharacterZombieSide" type="Sprite2D" parent="." unique_id=617961867]
-position = Vector2(0, -10)
-scale = Vector2(0.45833334, 0.3984375)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_voxyu")
+offset = Vector2(0, -40)
 
 [node name="lblVida" type="Label" parent="." unique_id=1445192074]
 offset_right = 40.0

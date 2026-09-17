@@ -5,7 +5,7 @@ extends Node
 @onready var tml_battlefield: TileMapLayer = $"../Layers/tmlBattlefield"
 
 #@onready var lblPuntos =$"../Puntos"
-@onready var lblSiguienteHito= $"../SiguienteHito"
+#@onready var lblSiguienteHito= $"../CanvasLayer/SiguienteHito"
 #@onready var lbl_monedas: Label = $"../lblMonedas"
 
 #var ajusteCantidad:float=2
@@ -13,17 +13,17 @@ extends Node
 #var spawners = 5
 
 var posiciones_tiles: Array[Vector2i] = [
-	Vector2i(16, 2),
-	Vector2i(16, 3),
-	Vector2i(16, 4),
-	Vector2i(16, 5),
-	Vector2i(16, 6),
-	Vector2i(16, 7),
+	Vector2i(13, 1),
+	Vector2i(13, 2),
+	Vector2i(13, 3),
+	Vector2i(13, 4),
+	Vector2i(13, 5),
+	Vector2i(13, 6),
 ]
 	
 func _ready() -> void:
 	genera_enemigo()
-	lblSiguienteHito.text = "Por derrotar: "+ str(GlobalGameState.hito_siguiente) 
+	#lblSiguienteHito.text = "Por derrotar: "+ str(GlobalGameState.hito_siguiente) 
 	
 func _on_timer_spawner_timeout() -> void:
 	if not tml_battlefield:

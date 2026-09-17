@@ -29,8 +29,8 @@ func _ready() -> void:
 	GlobalGameState.cambioHito.connect(on_cambio_hito)
 	
 
-	colocar_caramelo(Vector2i(2, 5),GameConstants.FIFTY,GameConstants.CARAMEL_TYPE.POWERUP)
-	colocar_caramelo(Vector2i(3, 5),GameConstants.ONEHUNDRED,GameConstants.CARAMEL_TYPE.BEE)
+	colocar_caramelo(Vector2i(1, 2),GameConstants.FIFTY,GameConstants.CARAMEL_TYPE.POWERUP,"Damage+")
+	colocar_caramelo(Vector2i(1, 3),GameConstants.ONEHUNDRED,GameConstants.CARAMEL_TYPE.BEE,"ABEJA")
 	
 func _process(_delta: float) -> void:
 	# Mientras estemos arrastrando una abeja, su posición sigue al ratón
@@ -62,8 +62,13 @@ func cambia_posicion_abeja(event: InputEvent)-> void:
 			## Soltar mouse
 			elif not event.pressed and abeja_arrastrada != null:
 				## Restaurar el orden de dibujo original
+				#
+				#const allowTilesInitX:int=1
+				#const allowTilesInitY:int=1
+				#const allowTilesFinalX:int=5
+				#const allowTilesFinalY:int=6
 
-				if phantom_bee_instance.espacioOcupado==false and tile_pos.x >= 3 and tile_pos.x <= 7 and tile_pos.y >= 2 and tile_pos.y <= 7:
+				if phantom_bee_instance.espacioOcupado==false and tile_pos.x >= GameConstants.allowTilesInitX and tile_pos.x <= GameConstants.allowTilesFinalX and tile_pos.y >= GameConstants.allowTilesInitY and tile_pos.y <= GameConstants.allowTilesFinalY:
 					
 					# CASO 1: Tile destino vacio
 					if not celdas_ocupadas.has(tile_pos) or not is_instance_valid(celdas_ocupadas[tile_pos]):
@@ -117,7 +122,8 @@ func cambia_posicion_caramelo(event: InputEvent)-> void:
 					if caramelo_arrastrado.caramel_type==GameConstants.CARAMEL_TYPE.BEE:
 						if GlobalGameState.monedas >= caramelo_arrastrado.costo:
 							colocar_abeja(tile_pos_bee)
-							GlobalGameState.monedas -=caramelo_arrastrado.costo
+							#GlobalGameState.monedas -=caramelo_arrastrado.costo
+							GlobalGameState.actualizaMonedas(caramelo_arrastrado.costo*-1)
 							#GlobalGameState.abejas_generadas+=1
 				else:
 					## CASO 2: Tile destino ocupado -> Intercambiar posiciones
@@ -125,7 +131,8 @@ func cambia_posicion_caramelo(event: InputEvent)-> void:
 						var abeja = celdas_ocupadas[tile_pos_bee]
 						if GlobalGameState.monedas >= caramelo_arrastrado.costo:
 							abeja.mejoraCaracteristicas(caramelo_arrastrado.aumentos)
-							GlobalGameState.monedas -=caramelo_arrastrado.costo
+							#GlobalGameState.monedas -=caramelo_arrastrado.costo
+							GlobalGameState.actualizaMonedas(caramelo_arrastrado.costo*-1)
 				
 				## Limpiar variables de control
 				caramelo_arrastrado = null
@@ -142,13 +149,15 @@ func colocar_abeja(tile_pos: Vector2i) -> void:
 	abejas_container.add_child(bee_instance)
 	GlobalGameState.abejas_generadas+=1
 
-func colocar_caramelo(tile_pos: Vector2i,costo:int,caramel_type:GameConstants.CARAMEL_TYPE) -> void:
+func colocar_caramelo(tile_pos: Vector2i,costo:int,caramel_type:GameConstants.CARAMEL_TYPE,nameString:String) -> void:
 	var c= Caracteristicas.new(0.5,0.0,0.0,0.0)
 	var caramelo_instance = caramelo_scene.instantiate()
 	caramelo_instance.position = tml_mochila.map_to_local(tile_pos)
 	caramelo_instance.aumentos=c
 	caramelo_instance.costo=costo
 	caramelo_instance.caramel_type=caramel_type
+	#caramelo_instance.setLabelName(nameString)
+	caramelo_instance.caramelName=nameString
 	celdas_ocupadas_caramelos[tile_pos] = caramelo_instance
 	caramelos_container.add_child(caramelo_instance)
 	

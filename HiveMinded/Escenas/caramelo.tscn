@@ -3,30 +3,66 @@
 [ext_resource type="Script" uid="uid://ccqlvd3fuyj33" path="res://Scripts/caramelo.gd" id="1_t4wcf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wgj6k"]
-font_size = 5
+font_size = 6
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2jc3q"]
+font_size = 7
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgj6k"]
-size = Vector2(15, 15)
+size = Vector2(30, 30)
 
 [node name="Caramelo" type="CharacterBody2D" unique_id=1087394322]
 collision_layer = 16
 script = ExtResource("1_t4wcf")
 
 [node name="name" type="Label" parent="." unique_id=1485892386]
-z_index = 1
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 6.0
-offset_bottom = 5.0
-text = "ATQ"
+z_index = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -15.0
+offset_top = -10.0
+offset_right = 15.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Damage +"
 label_settings = SubResource("LabelSettings_wgj6k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="costo" type="Label" parent="." unique_id=10236103]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -0.5
+offset_right = 14.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "$50"
+label_settings = SubResource("LabelSettings_2jc3q")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1025703379]
-offset_left = -7.0
-offset_top = -7.0
-offset_right = 7.0
-offset_bottom = 7.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=953263217]
