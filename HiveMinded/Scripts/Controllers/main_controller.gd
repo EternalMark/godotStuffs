@@ -10,10 +10,9 @@ func _ready() -> void:
 	GlobalGameState.gameState=GameConstants.GAME_STATES.IN_PROGRESS
 	GlobalGameState.actualizaUI.connect(actualizaUI)
 	GlobalGameState.findeljuego.connect(findeljuego)
-	GlobalGameState.reiniciar_partida()
+	GlobalGameState.cambioHito.connect(cambioHito)
 
 func actualizaUI()-> void:
-	print("Actualizando UI")
 	puntos.text = "Enemigos Derrotados: "+ str(GlobalGameState.enemigos_derrotados) 
 	siguiente_hito.text = "Por derrotar: "+ str(GlobalGameState.hito_siguiente) 
 	lbl_monedas.text = "Monedas: "+ str(GlobalGameState.monedas) 
@@ -22,4 +21,12 @@ func findeljuego()->void:
 	print("Fin del juego en maincontroller")
 	get_tree().paused = true
 	menu_fin_juego.visible=true
-	
+
+func cambioHito()->void:
+	print("Cambio de hito")
+	GlobalGameState.gameState=GameConstants.GAME_STATES.LEVEL_HUB
+	$Button.visible=true
+
+func _on_button_button_up() -> void:
+	GlobalGameState.gameState=GameConstants.GAME_STATES.IN_PROGRESS
+	$Button.visible=false

@@ -29,19 +29,12 @@ func _on_timer_spawner_timeout() -> void:
 	if not tml_battlefield:
 		print("Falta asignar el TileMapLayer o la escena Spawner")
 		return
-	genera_enemigo()
-	$TimerSpawner.wait_time=max(0.1,GlobalGameState.delay_generacion_enemigos)
-	
-	var fecha = Time.get_datetime_dict_from_system()
-	var milisegundos = Time.get_ticks_msec() % 1000
-	print("%04d-%02d-%02d %02d:%02d:%02d.%03d" % [
-	fecha["year"], fecha["month"], fecha["day"],
-	fecha["hour"], fecha["minute"], fecha["second"],
-	milisegundos]," Waittime: \t",$TimerSpawner.wait_time,"\tCantidad de enemigos: \t",GlobalGameState.cantidad_enemigos)
+	if GlobalGameState.gameState==GameConstants.GAME_STATES.IN_PROGRESS: 
+		genera_enemigo()
+
 
 # Función que se ejecutará automáticamente cuando el enemigo emita 'enemigo_muerto'
 func _on_enemigo_muerto(posicionGlobal) -> void:
-	
 	#region GeneraDrop
 	var tile_pos=tml_battlefield.local_to_map(tml_battlefield.to_local(posicionGlobal))
 	print("Enemigo muerto. Posicion: ",tile_pos)
@@ -70,8 +63,16 @@ func genera_enemigo():
 	var pos_local = tml_battlefield.map_to_local(posiciones_tiles[generacion])
 	var pos_global = tml_battlefield.to_global(pos_local)
 	enemy.global_position = pos_global
-	GlobalGameState.cantidad_enemigos+=1
+	GlobalGameState.enemigos_generados+=1
 	add_child(enemy)
+	$TimerSpawner.wait_time=max(0.1,GlobalGameState.delay_generacion_enemigos)
+	var fecha = Time.get_datetime_dict_from_system()
+	var milisegundos = Time.get_ticks_msec() % 1000
+	print("%04d-%02d-%02d %02d:%02d:%02d.%03d" % [fecha["year"], fecha["month"], fecha["day"],fecha["hour"], fecha["minute"], fecha["second"],milisegundos]," Waittime: \t",$TimerSpawner.wait_time,"\tCantidad de enemigos: \t",GlobalGameState.enemigos_generados)
+	if GlobalGameState.enemigos_generados>=GlobalGameState.hito_siguiente:
+		GlobalGameState.gameState=GameConstants.GAME_STATES.LAST_ENEMY
+		print("Ultimo enemigo Generado")
+
 
 # Ejemplo en GDScript para calcular el tiempo del siguiente spawn
 func obtener_tiempo_siguiente_enemigo(tiempo_juego: float) -> float:

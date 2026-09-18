@@ -19,14 +19,16 @@ const ONEHUNDRED:int=100
 #endregion
 
 #region MoverAbejas
-const allowTilesInitX:int=1
+const allowTilesInitX:int=3
 const allowTilesInitY:int=1
-const allowTilesFinalX:int=5
+const allowTilesFinalX:int=14
 const allowTilesFinalY:int=6
 #endregion
 
 enum GAME_STATES {
 	IN_PROGRESS,
+	LAST_ENEMY,
+	LEVEL_HUB,
 	ENDGAME
 }
 

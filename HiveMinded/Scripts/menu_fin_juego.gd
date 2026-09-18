@@ -9,3 +9,4 @@ func _input(event: InputEvent) -> void:
 		#$ColorRect.visible= not $ColorRect.visible
 		#$Label.visible= not $Label.visible
 		#print("Boton esc presionado: ", get_tree().paused)
+		GlobalGameState.reiniciar_partida()

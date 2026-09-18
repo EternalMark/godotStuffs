@@ -2,8 +2,10 @@ extends Node
 
 # Variable global para contar los enemigos eliminados
 var enemigos_derrotados: int = 0
-var cantidad_enemigos:int=0
+var enemigos_generados:int=0
+
 var hito_actual:int=0
+
 var abejas_generadas:int=0
 var hito_siguiente:int=10
 var delay_generacion_enemigos:float=5.0
@@ -25,12 +27,12 @@ const hitos = [5,2.5,2.0,1.5,1.0,0.5,0.4,0.3,0.2,0.1]
 func cambio_hito()->void:
 	hito_actual+=1
 	self.delay_generacion_enemigos=hitos[hito_actual if hito_actual<=hitos.size()-1 else hitos.size()-1]
+	gameState=GameConstants.GAME_STATES.LEVEL_HUB
 	cambioHito.emit()
 
 func nuevo_enemigo_derrotado() -> void:
 	print("Enemigo Derrotado")
 	enemigos_derrotados += 1
-	cantidad_enemigos-=1
 	if enemigos_derrotados==10:
 		cambio_hito()
 		hito_siguiente=50
@@ -38,7 +40,6 @@ func nuevo_enemigo_derrotado() -> void:
 		hito_siguiente=hito_siguiente+40*hito_actual
 		cambio_hito()
 		print("Hito Siguiente: ",hito_siguiente)
-		
 	actualizaUI.emit()
 	#var fecha = Time.get_datetime_dict_from_system()
 	#var milisegundos = Time.get_ticks_msec() % 1000
@@ -56,7 +57,7 @@ func enemigo_en_goalzone()->void:
 func reiniciar_partida()->void:
 	get_tree().paused = false
 	enemigos_derrotados=0
-	cantidad_enemigos=0
+	enemigos_generados=0
 	hito_actual=0
 	abejas_generadas=0
 	hito_siguiente=10
@@ -64,3 +65,4 @@ func reiniciar_partida()->void:
 	monedas=0
 	gameState = GameConstants.GAME_STATES.IN_PROGRESS
 	inicializaJuego.emit()
+	print("Reinicia Partida")

@@ -21,7 +21,7 @@ GlobalGameState="*uid://bkxty17ln22mb"
 
 [display]
 
-window/size/viewport_width=896
+window/size/viewport_width=960
 window/size/viewport_height=504
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
